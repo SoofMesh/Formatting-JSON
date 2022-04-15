@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data</title>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.dark-mode.css>
+</head>
+<body>
+
+        <button id="btn"><h1>Load JSON</h1></button>
+
+        <pre id=display class=json-container></pre>  
+        
+...
+        <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.min.js></script>
+        <script>
+            var div = document.getElementById('display')
+            document.getElementById('btn').addEventListener('click', (e)=>{
+            e.preventDefault();
+            const result = fetch("/load")
+            .then(res=>res.json()).then(res=>{
+                console.log(res)
+                div.innerHTML = prettyPrintJson.toHtml(res)
+            })                        
+        });
+        </script>
+</body>
+</html>
